@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# functions-load
+
+# Help message
+if [[ $1 = -h ]] || [[ $1 = --help ]]
+then
+  echo "
+$(basename "$0") [-h] (name)
+  -- script to <add content here>
+
+where:
+  -h (--help) show help text
+
+  exit 0;"
+fi
+
+echo "Loading custom functions from ~/Desktop/projects/scripts/custom-functions"
+
+# Clear and display signature
+c() { clear && signature }
+
+# Test function to verify functions have loaded
+tFunc() { echo "Custom functions loaded" }
+
+tl() { VCR_DEBUG=true test_launcher $1}
+
+# Source extra functions
+
+# source $HOME/Desktop/projects/scripts/new-tab

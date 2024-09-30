@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# common-issue
+
+# Help message
+if [[ $1 = -h ]] || [[ $1 = --help ]]
+then
+  echo "
+$(basename "$0") [-h] (name)
+  -- script to fix common issues
+
+where:
+  -h (--help) show help text
+
+  exit 0;"
+fi
+
+echo "
+Reference for common issues
+
+1) 'foreman start' command fails due to eventmachine
+  - Unintall eventmachine > `gem uninstall eventmachine
+  - bundle install in the project > `bundle install`
+
+  ref: https://appfolio.slack.com/archives/C0202H1FHT5/p1656012684761289
+
+2) Another process is already running
+  - Kill process > `kill <process id>`
+
+3) Container issues Colima, Docker, docker-machine
+"

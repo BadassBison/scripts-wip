@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# rails-cli
+
+# Help message
+if [[ $1 = -h ]] || [[ $1 = --help ]]
+then
+  echo "
+$(basename "$0") [-h] (name)
+  -- script to contain common rails cli commands
+
+where:
+  -h (--help) show help text
+
+  exit 0;"
+fi
+
+echo "View this file to see common Rails CLI commands"
+
+
+# aws --region=us-east-2 eks update-kubeconfig --name q1102 --alias q1102
+# kubectl afshell shawnremotedev --app property --remote-dev sync
+
+# kubectl afshell shawnremotedev --app property --remote-dev migrate
+
+# kubectl afshell shawnremotedev --app property --remote-dev --follow-logs
+
+# NODE_ENV=test mocha app/javascript/payments_flow_v2/test/api/failedBankAccountVerifications.spec.ts

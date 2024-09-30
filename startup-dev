@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# startup-dev
+
+# Help message
+if [[ $1 = -h ]] || [[ $1 = --help ]]
+then
+  echo "
+$(basename "$0") [-h] (name)
+  -- script to start all projects needed for local development
+
+where:
+  -h (--help) show help text
+
+  exit 0;"
+fi
+
+echo 'Starting local development stack'
+
+CMD_PREFIX='tell application "Terminal" to do script'
+CMD_ACTIVATE='tell application "Terminal" to activate'
+
+CMD_NEWTAB='tell application "System Events" to keystroke "t" using {command down}'
+
+CMD_SAVE_ACTIVE_APPNAME='tell application "System Events" to set prevAppName to displayed name of first process whose frontmost is true'
+CMD_REACTIVATE_PREV_APP='activate application prevAppName'
+
+CMD_SAVE_ACTIVE_TAB='tell application "Terminal" to set prevTab to (selected tab of front window)'
+CMD_REACTIVATE_PREV_TAB='tell application "Terminal" to set selected of prevTab to true'
+
+CMD_SETTITLE="tell application \"Terminal\" to set custom title of front window to \"$tabTitle\""
+    
+# The tricky part is to quote the command tokens properly when passing them to AppleScript:
+    
+# Step 1: Quote all parameters (as needed) using printf '%q' - this will perform backslash-escaping.
+# quotedArgs=$(printf '%q ' "$@")
+    
+# Step 2: Escape all backslashes again (by doubling them), because AppleScript expects that.
+# cmd="$CMD_PREFIX \"${quotedArgs//\\/\\\\}\""
+# echo "\$@ $@"
+# echo "quotedArgs $quotedArgs"
+# echo "cmd $cmd"
+
+# osascript -e "$CMD_ACTIVATE" -e "$CMD_NEWTAB" -e "$cmd in front window" -e "$CMD_SETTITLE" >/dev/null
+# osascript -e "$CMD_SAVE_ACTIVE_APPNAME" -e "$CMD_SAVE_ACTIVE_TAB" -e "$CMD_ACTIVATE" -e "$CMD_NEWTAB" -e 'tell application "Terminal" to do script "eval cd\\ ~/src/apm_bundle/apps/property "' -e "$CMD_REACTIVATE_PREV_APP" -e "$CMD_REACTIVATE_PREV_TAB" >/dev/null
+
+# Open new tab to property
+osascript -e "$CMD_ACTIVATE" -e "$CMD_NEWTAB" -e 'tell application "Terminal" to do script "eval cd\\ ~/src/apm_bundle/apps/property "' >/dev/null
+
+# Open new tab to tportal
+# osascript -e "$CMD_ACTIVATE" -e "$CMD_NEWTAB" -e 'tell application "Terminal" to do script "eval cd\\ ~/src/apm_bundle/apps/tportal in front window"' >/dev/null
+
+# eval "cd $HOME/src/apm_bundle/apps/property"

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# ssh-pass
+
+# Help message
+if [[ $1 = -h ]] || [[ $1 = --help ]]
+then
+  echo "
+$(basename "$0") [-h] (name)
+  -- script to get password from the keychain for ssh, this will eliminate having to enter a password on git clones etc.
+
+where:
+  -h (--help) show help text
+
+  exit 0;"
+fi
+
+ssh-add --apple-use-keychain ~/.ssh/id_rsa

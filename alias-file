@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# alias-file
+
+# Help message
+if [[ $1 = -h ]] || [[ $1 = --help ]]
+then
+  echo "
+$(basename "$0") [-h] (name)
+  -- script to content my aliases
+
+where:
+  -h (--help) show help text
+
+  exit 0;"
+fi
+
+echo "Loading aliases from ~/Desktop/projects/scripts/alias-file"
+
+# Quick access to profile and run files
+alias czrc='code ~/.zshrc'
+alias szrc='source ~/.zshrc'
+
+alias czsh='code ~/.zprofile'
+alias szsh='source ~/.zprofile'
+
+# Quick access to alias-file
+alias calias='code ~/Desktop/projects/scripts/alias-file'
+alias salias='source ~/Desktop/projects/scripts/alias-file'
+
+# Quick access to scripts folder
+alias scripts="code $HOME/Desktop/projects/scripts"

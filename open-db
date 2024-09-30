@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# open-db
+
+# # Help message
+# if [[ $1 = -h ]] || [[ $1 = --help ]]
+# then
+#   echo "
+# $(basename "$0") [-h] (db name)
+#   -- script to <add content here>
+
+# where:
+#   -h (--help) show help text
+
+#   "
+#   exit 0;
+# fi
+
+otto db browse vhost://$1
